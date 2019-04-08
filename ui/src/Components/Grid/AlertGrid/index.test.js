@@ -88,23 +88,7 @@ const VerifyColumnCount = (innerWidth, columns) => {
 };
 
 describe("<AlertGrid />", () => {
-  it("renders only first 50 alert groups", () => {
-    MockGroupList(60, 5);
-    const tree = ShallowAlertGrid();
-    const alertGroups = tree.find("AlertGroup");
-    expect(alertGroups).toHaveLength(50);
-  });
-
-  it("appends 30 groups after loadMore() call", () => {
-    MockGroupList(100, 5);
-    const tree = ShallowAlertGrid();
-    // call it directly, it should happen on scroll to the bottom of the page
-    tree.instance().loadMore();
-    const alertGroups = tree.find("AlertGroup");
-    expect(alertGroups).toHaveLength(80);
-  });
-
-  it("calling masonryRepack() calls forcePack() on Masonry instance`", () => {
+  it("calls masonryRepack() after update`", () => {
     const tree = ShallowAlertGrid();
     const instance = tree.instance();
     // it's a shallow render so we don't really have masonry mounted, fake it
